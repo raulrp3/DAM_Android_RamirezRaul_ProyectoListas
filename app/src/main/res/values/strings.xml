@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ProyectoListas</string>
+    <string name="next">Lugares visitados</string>
+    <string name="save">Guardar</string>
+</resources>
