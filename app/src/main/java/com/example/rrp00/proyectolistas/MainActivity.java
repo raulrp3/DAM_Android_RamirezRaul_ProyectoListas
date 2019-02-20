@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     ListView listPlaces;
     Button btnNext;
-    private final int CODE_SAVE = 1;
     ArrayList<Place> places;
     ArrayAdapter<Place> mAdapter;
 
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,SaveActivity.class);
-                startActivityForResult(intent,CODE_SAVE);
+                startActivityForResult(intent,Utils.CODE_SAVE);
             }
         });
 
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
 
-        if (requestCode == CODE_SAVE){
+        if (requestCode == Utils.CODE_SAVE){
             String place = data.getStringExtra("PLACE");
             places.add(new Place(place));
             mAdapter.notifyDataSetChanged();

@@ -11,7 +11,6 @@ import android.widget.Toast;
 public class SaveActivity extends AppCompatActivity {
     EditText etPlace;
     Button btnSave;
-    private final int CODE_SAVE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,7 @@ public class SaveActivity extends AppCompatActivity {
                 if (validate(place)){
                     Intent intent = new Intent();
                     intent.putExtra("PLACE",place);
-                    setResult(CODE_SAVE,intent);
+                    setResult(Utils.CODE_SAVE,intent);
                     finish();
                 }else{
                     Toast.makeText(getApplicationContext(),"¡ERROR!No puedes guardar un lugar vacío",Toast.LENGTH_SHORT).show();
