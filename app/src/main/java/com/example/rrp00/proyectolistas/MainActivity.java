@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -15,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     ListView listPlaces;
     Button btnNext;
     private final int CODE_SAVE = 1;
-    ArrayList<String> places;
-    ArrayAdapter<String> mAdapter;
+    ArrayList<Place> places;
+    ArrayAdapter<Place> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +33,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent,CODE_SAVE);
             }
         });
+
+        listPlaces.setAdapter(mAdapter);
     }
 
     private void initUI(){
         listPlaces = findViewById(R.id.list_places);
         btnNext = findViewById(R.id.next_btn);
         places = new ArrayList<>();
-        mAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,places);
+        mAdapter = new PlaceAdapter(this,places);
     }
 
     @Override
@@ -47,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == CODE_SAVE){
             String place = data.getStringExtra("PLACE");
-            places.add(place);
-            listPlaces.setAdapter(mAdapter);
+            places.add(new Place(place));
+            mAdapter.notifyDataSetChanged();
         }
     }
 }
